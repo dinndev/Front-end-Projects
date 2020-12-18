@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { ms, m, s } from "time-convert";
 import { useSpotifyData } from "./SpotifyProvider";
-import SpotifyWebApi from "spotify-web-api-node";
 
-const spotify = new SpotifyWebApi();
 function TrackLists({ trackName, artist, duration, images, length, id }) {
   const [{ trackPlaying, token }, dispatch] = useSpotifyData();
   const time = ms.to(m, s)(duration);

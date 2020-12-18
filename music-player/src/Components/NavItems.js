@@ -1,7 +1,7 @@
 export const lists = [
   {
     title: "Home",
-    url: "/",
+    url: "home",
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

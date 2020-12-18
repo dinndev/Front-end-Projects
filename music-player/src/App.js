@@ -3,7 +3,6 @@ import Nav from "./Components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import MusicPlayer from "./Components/MusicPlayer";
-import { loginUrl } from "./Components/Spotify";
 import React, { useEffect } from "react";
 import Login from "./Components/Login";
 import { useSpotifyData } from "./Components/SpotifyProvider";
