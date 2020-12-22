@@ -1,24 +1,23 @@
 import React from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 
-function TrackPlaying({ trackName, images, artist, duration }) {
+function TrackPlaying({ trackName, images, artist, duration, preview }) {
   const [{ playing }, dispatch] = useSpotifyData();
-  console.log(trackName);
   return (
     <div className="rounded-xl transition player-board bg-white items-center w-full mt-2 flex flex-col justify-between h-full">
       <div className=" shadow-2xl transition mt-2 player items-center relative flex flex-col justify-evenly sm:w-2/5 w-9/12 md:w-4/5 lg:w-2/3 p-2 h-4/5 rounded-xl">
         <img
           className={`track-album-art ${
             playing ? "animate-music" : "animate-none"
-          } shadow-2xl object-fill md:w-32 md:h-32 lg:w-36 lg:h-36 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36`}
-          src={images[1].url}
+          } shadow-2xl object-fill md:w-32 md:h-32 lg:w-32 lg:h-32 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36`}
+          src={images}
           alt=""
         />
-        <div className="bg-white circle rounded-full w-12 h-12 md:top-16 top-14 absolute"></div>
+        <div className="bg-white circle rounded-full w-12 h-12 md:top-16 top-12 absolute"></div>
         <p className="title text-xs sm:text-sm text-secondary font-bold">
           {trackName}
         </p>
-        {/* <p className="album-name text-xs text-gray-400">{artist[0]}</p> */}
+        <p className="album-name text-xs text-gray-400">{artist}</p>
         <div className="length flex justify-between px-4 text-gray-400 items-center h-10 text-xs w-full">
           <span className="played">{duration}</span>
           <span>{duration}</span>

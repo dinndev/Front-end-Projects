@@ -1,11 +1,12 @@
 export const initialState = {
   user: null,
-  playLists: [],
+  playLists: {},
   trackPlaying: [],
   playing: false,
   token: "",
   imageUrl: "",
   trackLists: [],
+  input: "ariana",
 };
 
 const reducer = (state, action) => {
@@ -44,6 +45,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         playing: action.playing,
+      };
+    case "SET_INPUT":
+      return {
+        ...state,
+        input: action.input,
       };
     default:
       return state;

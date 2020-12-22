@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { ms, m, s } from "time-convert";
 import { useSpotifyData } from "./SpotifyProvider";
+import convert from "convert-seconds";
 
-function TrackLists({ trackName, artist, duration, images, length, id }) {
-  const [{ trackPlaying, token }, dispatch] = useSpotifyData();
-  const time = ms.to(m, s)(duration);
-  const _duration = `${time[0]}:${time[1]}`;
+function TrackLists({
+  trackName,
+  artist,
+  duration,
+  images,
+  id,
+  length,
+  preview,
+}) {
+  const [{ trackPlaying }, dispatch] = useSpotifyData();
+  const convertion = convert(duration);
+  const _duration = `${convertion.minutes}:${convertion.seconds}`;
   const [heartBg, setHeartBg] = useState(false);
   const trackPlayingData = [
     {
@@ -14,6 +22,7 @@ function TrackLists({ trackName, artist, duration, images, length, id }) {
       artist: artist,
       trackName: trackName,
       duration: _duration,
+      preview: preview,
     },
   ];
 
@@ -22,7 +31,7 @@ function TrackLists({ trackName, artist, duration, images, length, id }) {
       <span className="font-bold text-xs text-secondary">{length}</span>
       <img
         className="rounded-lg object-contain h-12 w-12"
-        src={images[images.length - 1].url}
+        src={images}
         alt={artist}
       />
       <svg
@@ -42,7 +51,7 @@ function TrackLists({ trackName, artist, duration, images, length, id }) {
         <path d="M295.84 146.049l-256-144a16.026 16.026 0 00-15.904.128A15.986 15.986 0 0016 16.001v288a15.986 15.986 0 007.936 13.824A16.144 16.144 0 0032 320.001c2.688 0 5.408-.672 7.84-2.048l256-144c5.024-2.848 8.16-8.16 8.16-13.952s-3.136-11.104-8.16-13.952z" />
       </svg>
       <p className="z-0 col-span-2 font-bold text-secondary">{trackName}</p>
-      <p className="col-span-2 text-gray-400 text-xs">{artist.join(" ft. ")}</p>
+      <p className="col-span-2 text-gray-400 text-xs">{artist}</p>
       <p className="col-span-2 text-gray-400">{_duration}</p>
       <svg
         onClick={() => setHeartBg((prev) => !prev)}

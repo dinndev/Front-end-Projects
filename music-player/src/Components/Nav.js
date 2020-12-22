@@ -1,27 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { lists, personalMusic } from "./NavItems";
-//import Spotify from '../Spotify'
-import { useSpotifyData } from "./SpotifyProvider";
-import SpotifyWebApi from "spotify-web-api-js";
-
-const spotify = new SpotifyWebApi();
+// import { useSpotifyData } from "./SpotifyProvider";
 
 function Nav() {
-  const [{ user }, dispatch] = useSpotifyData();
+  // const [{ user }] = useSpotifyData();
   return (
-    <div className="nav hidden md:block w-1/3 bottom-0 text-sm bg-white">
+    <div className="nav hidden md:block w-1/4 bottom-0 text-sm bg-white">
       <div className=" p-6 profile flex flex-col items-center">
         <img
           className="rounded-full w-16 shadow-xl mb-2 h-16 object-cover"
-          src={user ? user.images[0].url : ""}
+          src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          alt="user"
         />
-        <h2 className="profile-name text-md mt-2 leading-6">
-          {user ? user.display_name : "User"}
-        </h2>
-        <span className="tracking-wide profile-email text-gray-400 text-xs">
-          Dinndev@gmail.com
-        </span>
+        <h2 className="profile-name text-md mt-2 leading-6">User</h2>
+        <span className="tracking-wide profile-email text-gray-400 text-xs"></span>
       </div>
       <ul className="flex flex-col items-center h-48 justify-around my-4 nav-list w-full ">
         {lists.map((items, index) => {

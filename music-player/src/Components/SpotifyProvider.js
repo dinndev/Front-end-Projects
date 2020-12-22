@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useState } from "react";
+import React, { useReducer, useContext } from "react";
 
 export const SpotifyDataContext = React.createContext();
 
