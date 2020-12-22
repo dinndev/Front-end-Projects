@@ -6,7 +6,6 @@ import MusicPlayer from "./Components/MusicPlayer";
 import React from "react";
 
 function App() {
-  // const [{ token }, dispatch] = useSpotifyData();
   return (
     <div className="App flex h-full w-full bg-gray-100">
       <Router>
