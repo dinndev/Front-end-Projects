@@ -25,7 +25,7 @@
     "time-convert": "^0.0.2",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://dinndev.github.io/Front-end-Projects/music/player",
+  "homepage": "https://dinndev.github.io/Front-end-Projects/",
   "scripts": {
     "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
