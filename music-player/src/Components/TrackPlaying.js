@@ -4,16 +4,16 @@ import { useSpotifyData } from "./SpotifyProvider";
 function TrackPlaying({ trackName, images, artist, duration, preview }) {
   const [{ playing }, dispatch] = useSpotifyData();
   return (
-    <div className="rounded-xl transition player-board bg-white items-center w-full mt-2 flex flex-col justify-between h-full">
-      <div className=" shadow-2xl transition mt-2 player items-center relative flex flex-col justify-evenly sm:w-2/5 w-9/12 md:w-4/5 lg:w-2/3 p-2 h-4/5 rounded-xl">
+    <div className="rounded-xl transition player-board bg-white items-center lg:h-5/6 w-full lg:mt-0 mt-2 flex flex-col justify-between h-full">
+      <div className=" shadow-2xl transition mt-2 player items-center relative flex flex-col justify-evenly sm:w-2/5 w-9/12 md:w-2/5 lg:w-4/5 lg:h-3/4 p-2 h-4/5 rounded-xl">
         <img
           className={`track-album-art ${
             playing ? "animate-music" : "animate-none"
-          } shadow-2xl object-fill md:w-32 md:h-32 lg:w-32 lg:h-32 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36`}
+          } shadow-2xl object-fill md:w-32 md:h-32 lg:w-44 lg:h-44 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36`}
           src={images}
           alt=""
         />
-        <div className="bg-white circle rounded-full w-12 h-12 md:top-16 top-12 absolute"></div>
+        <div className="bg-white lg:w-16 lg:h-16 circle rounded-full w-12 h-12 md:top-14 lg:top-20 top-14 absolute"></div>
         <p className="title text-xs sm:text-sm text-secondary font-bold">
           {trackName}
         </p>
@@ -23,7 +23,7 @@ function TrackPlaying({ trackName, images, artist, duration, preview }) {
           <span>{duration}</span>
         </div>
       </div>
-      <div className=" w-full controls flex h-12 justify-center items-center">
+      <div className=" w-full controls flex lg:h-1/5 justify-center items-center">
         <svg
           className="w-4 h-4 cursor-pointer fill-current text-gray-300"
           viewBox="0 0 46 36"

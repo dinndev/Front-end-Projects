@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 function Header() {
   return (
-    <div className="header w-full h-11 my-3 flex items-center justify-between">
+    <div className="header 2xl:my-0 w-full h-14 my-3 flex items-center justify-between">
       <SearchBar />
       <div className="nav-controls pl-4 md:pl-0 flex items-center w-2/6 sm:w-1/6 md:w-1/3 justify-between">
         <svg

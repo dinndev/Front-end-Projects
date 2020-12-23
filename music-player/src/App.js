@@ -7,7 +7,7 @@ import React from "react";
 
 function App() {
   return (
-    <div className="App flex h-full w-full bg-gray-100">
+    <div className="App flex h-full w-screen bg-gray-100">
       <Router>
         <Switch>
           <Nav />

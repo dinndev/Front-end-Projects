@@ -13,7 +13,7 @@ function Rows({ image, title, tracks }) {
             input: title,
           })
         }
-        className="first:w-48 first:h-48 rounded-lg mr-2 row-start-1 w-44 h-44 shadow-xl cursor-pointer object-cover"
+        className=" md:h-44 lg:w-40 lg:h-40 md:w-44 2xl:h-80 2xl:w-96 2xl:mr-8 rounded-lg mr-5 row-start-1 w-48 h-48 shadow-xl cursor-pointer object-cover"
         src={image}
         alt={title}
       />
