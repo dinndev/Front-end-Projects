@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Front-end-Projects/music/player/static/css/main.957f83ef.chunk.css",
-    "main.js": "/Front-end-Projects/music/player/static/js/main.a89a4087.chunk.js",
-    "main.js.map": "/Front-end-Projects/music/player/static/js/main.a89a4087.chunk.js.map",
-    "runtime-main.js": "/Front-end-Projects/music/player/static/js/runtime-main.2f27076f.js",
-    "runtime-main.js.map": "/Front-end-Projects/music/player/static/js/runtime-main.2f27076f.js.map",
-    "static/js/2.a3a543af.chunk.js": "/Front-end-Projects/music/player/static/js/2.a3a543af.chunk.js",
-    "static/js/2.a3a543af.chunk.js.map": "/Front-end-Projects/music/player/static/js/2.a3a543af.chunk.js.map",
-    "static/js/3.5eb7060b.chunk.js": "/Front-end-Projects/music/player/static/js/3.5eb7060b.chunk.js",
-    "static/js/3.5eb7060b.chunk.js.map": "/Front-end-Projects/music/player/static/js/3.5eb7060b.chunk.js.map",
-    "index.html": "/Front-end-Projects/music/player/index.html",
-    "static/css/main.957f83ef.chunk.css.map": "/Front-end-Projects/music/player/static/css/main.957f83ef.chunk.css.map",
-    "static/js/2.a3a543af.chunk.js.LICENSE.txt": "/Front-end-Projects/music/player/static/js/2.a3a543af.chunk.js.LICENSE.txt"
+    "main.css": "/Front-end-Projects/static/css/main.957f83ef.chunk.css",
+    "main.js": "/Front-end-Projects/static/js/main.a89a4087.chunk.js",
+    "main.js.map": "/Front-end-Projects/static/js/main.a89a4087.chunk.js.map",
+    "runtime-main.js": "/Front-end-Projects/static/js/runtime-main.fa829084.js",
+    "runtime-main.js.map": "/Front-end-Projects/static/js/runtime-main.fa829084.js.map",
+    "static/js/2.3482bda5.chunk.js": "/Front-end-Projects/static/js/2.3482bda5.chunk.js",
+    "static/js/2.3482bda5.chunk.js.map": "/Front-end-Projects/static/js/2.3482bda5.chunk.js.map",
+    "static/js/3.5eb7060b.chunk.js": "/Front-end-Projects/static/js/3.5eb7060b.chunk.js",
+    "static/js/3.5eb7060b.chunk.js.map": "/Front-end-Projects/static/js/3.5eb7060b.chunk.js.map",
+    "index.html": "/Front-end-Projects/index.html",
+    "static/css/main.957f83ef.chunk.css.map": "/Front-end-Projects/static/css/main.957f83ef.chunk.css.map",
+    "static/js/2.3482bda5.chunk.js.LICENSE.txt": "/Front-end-Projects/static/js/2.3482bda5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2f27076f.js",
-    "static/js/2.a3a543af.chunk.js",
+    "static/js/runtime-main.fa829084.js",
+    "static/js/2.3482bda5.chunk.js",
     "static/css/main.957f83ef.chunk.css",
     "static/js/main.a89a4087.chunk.js"
   ]
