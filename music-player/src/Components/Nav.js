@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { lists, personalMusic } from "./NavItems";
-// import { useSpotifyData } from "./SpotifyProvider";
 
 function Nav() {
-  // const [{ user }] = useSpotifyData();
   return (
     <div className="nav hidden lg:block w-1/4 bottom-0 text-sm bg-white">
       <div className=" p-6 profile flex flex-col items-center">
@@ -38,9 +36,9 @@ function Nav() {
               <Link
                 to={items.url}
                 key={index}
-                className="flex w-full md:text-xs text-left lg:text-sm items-center fill-current hover:text-blue-600 font-semibold text-sm"
+                className="flex w-full 2xl:w-3/4 2xl:pr-20 md:text-xs text-left lg:text-sm items-center fill-current hover:text-blue-600 font-semibold text-sm"
               >
-                <i className="mr-4 ml-10 ">{items.svg}</i>
+                <i className="mr-4 2xl:ml-8 ml-10 ">{items.svg}</i>
                 <h2 className={items.title}>{items.title}</h2>
               </Link>
             );
