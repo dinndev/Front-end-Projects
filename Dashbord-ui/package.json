@@ -1,0 +1,19 @@
+{
+  "name": "dashbord-ui",
+  "version": "1.0.0",
+  "description": "Project",
+  "main": "app.js",
+  "scripts": {
+    "deply": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dinndev/Front-end-Projects/tree/master/Dashboard-ui"
+  },
+  "author": "din",
+  "license": "ISC",
+  "homepage": "https://github.com/dinndev/Front-end-Projects/Dashboard-ui",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
