@@ -178,7 +178,7 @@ const slideLength = document.querySelector(".slide-length");
 
 let index = 0;
 let img = [];
-const time = 3000;
+const time = 4000;
 
 img[0] = "./svg/group.svg";
 img[1] = "./svg/revenue.svg";

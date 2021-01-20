@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Nav />
         </Switch>
-        <div className="main-contents flex flex-col w-full lg:h-screen h-full mx-6">
+        <div className="main-contents flex flex-col lg:h-screen h-full mx-6">
           <Header />
           <MusicPlayer />
         </div>

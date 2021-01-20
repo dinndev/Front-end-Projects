@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { lists, personalMusic } from "./NavItems";
+import "./CostumStyle/musicPlayer.css";
 
 function Nav() {
   return (
-    <div className="nav hidden lg:block w-1/4 bottom-0 text-sm bg-white">
+    <div className="nav hidden lg:block w-1/4 lg:w-2/6 bottom-0 text-sm bg-white">
       <div className=" p-6 profile flex flex-col items-center">
         <img
-          className="rounded-full w-20 shadow-xl mb-2 h-20 object-cover"
+          className="rounded-full lg:w-14 lg:h-14 w-20 shadow-xl mb-2 h-20 object-cover"
           src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
           alt="user"
         />
@@ -36,7 +37,7 @@ function Nav() {
               <Link
                 to={items.url}
                 key={index}
-                className="flex w-full 2xl:w-3/4 2xl:pr-20 md:text-xs text-left lg:text-sm items-center fill-current hover:text-blue-600 font-semibold text-sm"
+                className="flex w-full 2xl:w-3/4 xl:pr-2 2xl:pr-18 md:text-xs text-left xl:ml-8 2xl:ml-0 lg:text-sm items-center fill-current hover:text-blue-600 font-semibold text-sm"
               >
                 <i className="mr-4 2xl:ml-8 ml-10 ">{items.svg}</i>
                 <h2 className={items.title}>{items.title}</h2>

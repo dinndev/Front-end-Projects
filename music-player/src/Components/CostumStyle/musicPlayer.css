@@ -5,3 +5,20 @@
 .album-tracks::-webkit-scrollbar {
   display: none;
 }
+
+@media all and (min-width: 1000px) {
+  .billboard-rows {
+    max-height: 55rem;
+    max-width: 120rem;
+  }
+  .nav {
+    max-width: 50rem;
+  }
+  .header {
+    max-width: 120rem;
+  }
+  .App {
+    justify-content: center;
+    display: flex;
+  }
+}

@@ -27,7 +27,7 @@ function TrackLists({
   ];
 
   return (
-    <div className="track text-xs sm:text-sm grid grid-cols-10 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
+    <div className="track text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
       <span className="font-bold text-xs text-secondary">{length}</span>
       <img
         className="rounded-lg object-contain h-12 w-12"

@@ -79,7 +79,7 @@ function MusicPlayer() {
         <p className="font-bold h-7 lg:hidden text-md sm:text-lg my-5 md:m-2 text-left">
           Tracks
         </p>
-        <div className="album-tracks mr-4 flex-col flex h-56 w-full lg:h-full sm:w-full md:h-2/5 lg:w-3/5 overflow-y-scroll">
+        <div className="album-tracks mr-4 flex-col flex h-56 w-full lg:h-full sm:w-full lg:w-3/5 overflow-y-scroll">
           {trackLists
             ? trackFilter(trackLists).map(
                 ({ id, duration, title, artist, image, preview }, index) => {
@@ -98,7 +98,7 @@ function MusicPlayer() {
               )
             : "Not Found"}
         </div>
-        <div className="player-board w-full lg:h-full sm:w-full lg:mt-0 md:mt-6 lg:w-2/5 flex flex-col bg-white rounded-xl md:h-1/2 h-full">
+        <div className="player-board w-full lg:h-full sm:w-full lg:mt-0 md:mt-6 lg:w-2/5 flex flex-col bg-white rounded-b-xl md:rounded-xl md:h-1/2 h-full">
           {Array.from(trackPlaying).map(
             ({ artist, id, trackName, duration, images, preview }) => {
               return (

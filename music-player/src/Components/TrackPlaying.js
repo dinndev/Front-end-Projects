@@ -9,11 +9,11 @@ function TrackPlaying({ trackName, images, artist, duration, preview }) {
         <img
           className={`track-album-art ${
             playing ? "animate-music" : "animate-none"
-          } shadow-2xl object-fill md:w-32 md:h-32 2xl:w-56 2xl:h-56 lg:w-40 lg:h-40 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36`}
+          } shadow-2xl object-fill md:w-32 md:h-32 2xl:w-56 2xl:h-56 lg:w-40 lg:h-40 my-2 rounded-full w-32 h-32 sm:w-36 sm:h-36 xl:w-44 xl:h-44`}
           src={images}
           alt=""
         />
-        <div className="bg-white lg:w-16 lg:h-16 2xl:w-20 2xl:h-20 circle xl:top-16 2xl:top-28 rounded-full w-12 h-12 md:top-14 lg:top-20 top-14 absolute"></div>
+        <div className="bg-white lg:w-16 lg:h-16 2xl:w-20 2xl:h-20 circle xl:top-20 2xl:top-28 rounded-full w-12 h-12 md:top-14 lg:top-20 top-14 absolute"></div>
         <p className="title text-xs sm:text-sm text-secondary font-bold">
           {trackName}
         </p>
