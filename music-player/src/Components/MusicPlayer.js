@@ -18,7 +18,7 @@ function MusicPlayer() {
     const options = {
       method: "GET",
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
-      params: { q: input },
+      params: { q: input, limit: 10 },
       headers: {
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",

@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSpotifyData } from "./SpotifyProvider";
-import axios from "axios";
-import TrackLists from "./TrackLists";
 function Rows({ image, title, tracks }) {
   const [{ trackLists, playing, input }, dispatch] = useSpotifyData();
   return (
