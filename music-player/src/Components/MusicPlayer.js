@@ -18,7 +18,7 @@ function MusicPlayer() {
     const options = {
       method: "GET",
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
-      params: { q: input, limit: 10 },
+      params: { q: input, limit: 20 },
       headers: {
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
@@ -92,6 +92,7 @@ function MusicPlayer() {
                       length={index + 1}
                       images={image}
                       preview={preview}
+                      i={index}
                     />
                   );
                 }
@@ -100,16 +101,22 @@ function MusicPlayer() {
         </div>
         <div className="player-board w-full lg:h-full sm:w-full lg:mt-0 md:mt-6 lg:w-2/5 flex flex-col bg-white rounded-b-xl md:rounded-xl md:h-1/2 h-full">
           {Array.from(trackPlaying).map(
-            ({ artist, id, trackName, duration, images, preview }) => {
+            (
+              { artist, id, trackName, duration, images, preview, i },
+              index
+            ) => {
               return (
                 <TrackPlaying
+                  tracks={trackFilter(trackLists)}
                   images={images}
-                  key={id}
+                  key="23423523"
                   artist={artist}
                   id={id}
                   trackName={trackName}
                   duration={duration}
                   preview={preview}
+                  i={i}
+                  firstI={index}
                 />
               );
             }

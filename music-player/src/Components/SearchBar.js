@@ -6,7 +6,7 @@ function SearchBar() {
   const { register, handleSubmit } = useForm();
   const [{ input }, dispatch] = useSpotifyData();
   return (
-    <div class=" relative text-xs h-10 w-4/6 md:w-5/12 2xl:w-4/12 2xl:h-14 items-center 2xl:text-lg">
+    <div className=" relative text-xs h-10 w-4/6 md:w-5/12 2xl:w-4/12 2xl:h-14 items-center 2xl:text-lg">
       <form
         onSubmit={handleSubmit((data, e) => {
           dispatch({

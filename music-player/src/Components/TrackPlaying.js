@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 
-function TrackPlaying({ trackName, images, artist, duration, preview }) {
+function TrackPlaying({ trackName, images, artist, preview, tracks, i }) {
+  const [currentPlaying, setCurrentPlaying] = useState({
+    preview,
+    artist,
+    images,
+    trackName,
+  });
   const [{ playing }, dispatch] = useSpotifyData();
+  const audioRef = useRef();
+  useEffect(() => {
+    if (playing) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [playing, preview]);
+
   return (
     <div className="transition player-board items-center w-full lg:h-full lg:justify-start xl:h-3/5 xl:justify-evenly xl:pt-2 xl:pb-10 lg:mt-0 mt-2 flex flex-col justify-center h-full">
+      <audio loop src={preview} ref={audioRef} />
       <div className=" shadow-2xl transition mt-2 lg:mt-0 player items-center relative flex flex-col justify-evenly sm:w-2/5 w-9/12 md:w-3/5 xl:h-4/5 5 xl:w-3/4 lg:w-4/5 lg:h-2/4 p-2 h-4/5 rounded-xl">
         <img
           className={`track-album-art ${
@@ -18,10 +34,7 @@ function TrackPlaying({ trackName, images, artist, duration, preview }) {
           {trackName}
         </p>
         <p className="album-name text-xs text-gray-400">{artist}</p>
-        <div className="length flex justify-between px-4 text-gray-400 items-center h-10 text-xs w-full">
-          <span className="played">{duration}</span>
-          <span>{duration}</span>
-        </div>
+        <div className="length flex justify-between px-4 text-gray-400 items-center h-10 text-xs w-full"></div>
       </div>
       <div className=" w-full controls flex lg:h-1/5 justify-center items-center">
         <svg

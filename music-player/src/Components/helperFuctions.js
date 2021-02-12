@@ -17,7 +17,7 @@ export const albumFilter = (album) => {
 };
 
 export const trackFilter = (track) => {
-  const result = [];
+  const result = [...new Set()];
   const map = new Map();
   const albums = Array.from(track);
   for (const item of albums) {

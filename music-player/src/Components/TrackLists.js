@@ -10,6 +10,7 @@ function TrackLists({
   id,
   length,
   preview,
+  i,
 }) {
   const [{ trackPlaying }, dispatch] = useSpotifyData();
   const convertion = convert(duration);
@@ -17,12 +18,13 @@ function TrackLists({
   const [heartBg, setHeartBg] = useState(false);
   const trackPlayingData = [
     {
-      images: images,
-      id: id,
-      artist: artist,
-      trackName: trackName,
+      images,
+      id,
+      artist,
+      trackName,
       duration: _duration,
-      preview: preview,
+      preview,
+      i,
     },
   ];
 

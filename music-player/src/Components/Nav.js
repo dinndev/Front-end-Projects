@@ -5,7 +5,7 @@ import "./CostumStyle/musicPlayer.css";
 
 function Nav() {
   return (
-    <div className="nav hidden lg:block w-1/4 lg:w-2/6 bottom-0 text-sm bg-white">
+    <div className="nav hidden lg:block w-1/4 lg:max-w-7xl bottom-0 text-sm bg-white">
       <div className=" p-6 profile flex flex-col items-center">
         <img
           className="rounded-full lg:w-14 lg:h-14 w-20 shadow-xl mb-2 h-20 object-cover"
