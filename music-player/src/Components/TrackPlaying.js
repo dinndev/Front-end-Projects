@@ -1,7 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 
-function TrackPlaying({ trackName, images, artist, preview, tracks, i }) {
+function TrackPlaying({
+  trackName,
+  images,
+  artist,
+  preview,
+  nextSong,
+  prevSong,
+  currentIndex,
+}) {
   const [currentPlaying, setCurrentPlaying] = useState({
     preview,
     artist,
@@ -38,7 +46,10 @@ function TrackPlaying({ trackName, images, artist, preview, tracks, i }) {
       </div>
       <div className=" w-full controls flex lg:h-1/5 justify-center items-center">
         <svg
-          className="w-4 h-4 2xl:w-6 2xl:h-6 cursor-pointer fill-current text-gray-300"
+          onClick={prevSong}
+          className={`w-4 h-4 2xl:w-6 2xl:h-6 cursor-pointer fill-current  ${
+            currentIndex === 0 ? "text-gray-300" : "text-blue-600"
+          }`}
           viewBox="0 0 46 36"
         >
           <path d="M41 .68L24.6 14V3.05a3 3 0 00-5-2.37l-18.51 15a3 3 0 000 4.74l18.51 15a3 3 0 005-2.37V22L41 35.32A3 3 0 0046 33V3.05a3 3 0 00-5-2.37z" />
@@ -72,13 +83,11 @@ function TrackPlaying({ trackName, images, artist, preview, tracks, i }) {
           </div>
         </div>
         <svg
-          className="w-4 h-4  2xl:w-6 2xl:h-6 cursor-pointer fill-current"
+          onClick={nextSong}
+          className="w-4 h-4 2xl:w-6 2xl:h-6 text-blue-600 cursor-pointer transform rotate-180 fill-current "
           viewBox="0 0 46 36"
         >
-          <path
-            d="M44.87 15.63L26.36.68a3 3 0 00-5 2.37V14L5 .68a3 3 0 00-5 2.37V33a3 3 0 005 2.37L21.4 22v11a3 3 0 005 2.37l18.47-15a3 3 0 000-4.74z"
-            fill="#d3d4ed"
-          />
+          <path d="M41 .68L24.6 14V3.05a3 3 0 00-5-2.37l-18.51 15a3 3 0 000 4.74l18.51 15a3 3 0 005-2.37V22L41 35.32A3 3 0 0046 33V3.05a3 3 0 00-5-2.37z" />
         </svg>
       </div>
     </div>

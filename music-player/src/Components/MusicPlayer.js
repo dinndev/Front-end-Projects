@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 import Rows from "./Rows";
 import "./CostumStyle/musicPlayer.css";
@@ -13,8 +13,20 @@ function MusicPlayer() {
     { playLists, trackLists, trackPlaying, input },
     dispatch,
   ] = useSpotifyData();
+  const [currentSong, setCurrentSong] = useState(0);
   // Api call every changes on input
+  const handleNextSong = () =>
+    currentSong >= 15 ? setCurrentSong(0) : setCurrentSong(currentSong + 1);
+
+  const handlePrevSong = () => {
+    if (currentSong === 0) {
+      return;
+    } else {
+      return setCurrentSong(currentSong - 1);
+    }
+  };
   useEffect(() => {
+    let cancel;
     const options = {
       method: "GET",
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
@@ -26,17 +38,19 @@ function MusicPlayer() {
     };
 
     axios
-      .request(options)
+      .request(options, {
+        cancenToken: new axios.CancelToken((c) => (cancel = c)),
+      })
       .then(async (res) => {
         const data = await res.data.data;
         const singleData = [
           {
-            images: data[0].album.cover_medium,
-            preview: data[0].preview,
-            id: data[0].id,
-            trackName: data[0].title,
-            duration: data[0].duration,
-            artist: data[0].artist.name,
+            images: data[currentSong].album.cover_medium,
+            preview: data[currentSong].preview,
+            id: data[currentSong].id,
+            trackName: data[currentSong].title,
+            duration: data[currentSong].duration,
+            artist: data[currentSong].artist.name,
           },
         ];
         //Set the data to playlists
@@ -54,7 +68,8 @@ function MusicPlayer() {
         });
       })
       .catch((err) => console.log(err));
-  }, [input]);
+    return (_) => cancel();
+  }, [currentSong, input]);
   return (
     <div className="billboard-rows h-auto select-none w-full overflow-x-visible lg:overflow-hidden">
       <h2 className="font-bold h-10 text-md sm:text-lg text-left">Albums</h2>
@@ -107,7 +122,8 @@ function MusicPlayer() {
             ) => {
               return (
                 <TrackPlaying
-                  tracks={trackFilter(trackLists)}
+                  nextSong={handleNextSong}
+                  prevSong={handlePrevSong}
                   images={images}
                   key="23423523"
                   artist={artist}
@@ -117,6 +133,7 @@ function MusicPlayer() {
                   preview={preview}
                   i={i}
                   firstI={index}
+                  currentIndex={currentSong}
                 />
               );
             }
