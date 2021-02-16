@@ -10,7 +10,7 @@ require("dotenv").config();
 function MusicPlayer() {
   // Get the value of the input as a query params
   const [
-    { playLists, trackLists, trackPlaying, input },
+    { playLists, playing, trackLists, trackPlaying, input },
     dispatch,
   ] = useSpotifyData();
   const [currentSong, setCurrentSong] = useState(0);
@@ -65,6 +65,10 @@ function MusicPlayer() {
         dispatch({
           type: "SET_TRACK_PLAYING",
           trackPlaying: singleData,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          playing: false,
         });
       })
       .catch((err) => console.log(err));
