@@ -57,3 +57,24 @@ export const transition = {
   tracks: 0.7,
   player: 0.7,
 };
+
+export const artists = [
+  "conan gray",
+  "ariana grande",
+  "justin bieber",
+  "rex orange county",
+  "alessia cara",
+  "jeremy sucker",
+  "troye sivan",
+  "lemon boy",
+  "lauv",
+  "lany",
+  "lorde",
+  "pentatonix",
+  "olivia rodrigo",
+  "joji",
+];
+
+export const randomSearch = (artist) => {
+  return artists[Math.floor(Math.random() * artist.length)];
+};
