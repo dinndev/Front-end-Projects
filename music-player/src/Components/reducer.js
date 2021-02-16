@@ -1,3 +1,5 @@
+import { artists, randomSearch } from "./helperFuctions";
+
 export const initialState = {
   user: null,
   playLists: {},
@@ -6,7 +8,7 @@ export const initialState = {
   token: "",
   imageUrl: "",
   trackLists: [],
-  input: "bazzi",
+  input: randomSearch(artists),
 };
 
 const reducer = (state, action) => {
