@@ -5,7 +5,6 @@ import { useSpotifyData } from "./SpotifyProvider";
 function SearchBar() {
   const { register, handleSubmit } = useForm();
   const [{ input }, dispatch] = useSpotifyData();
-  console.log(input);
   return (
     <div className=" relative text-xs h-10 w-4/6 md:w-5/12 2xl:w-4/12 2xl:h-14 items-center 2xl:text-lg">
       <form
@@ -16,7 +15,14 @@ function SearchBar() {
           });
           // e.target.reset();
         })}
-        className="h-full w-full "
+        onSubmit={handleSubmit((data, e) => {
+          dispatch({
+            type: "SET_INPUT",
+            input: data.artist,
+          });
+          // e.target.reset();
+        })}
+        className="h-full w-full"
       >
         <input
           name="artist"
@@ -25,10 +31,7 @@ function SearchBar() {
           ref={register({ required: true })}
           placeholder="Search for songs, Artists etc.."
         />
-        <button
-          type="submit"
-          className="ml-5 absolute left-1 top-0 mt-3 mr-4 2xl:mt-5 2xl:mr-6"
-        >
+        <button className="ml-5 absolute left-1 top-0 mt-3 mr-4 2xl:mt-5 2xl:mr-6">
           <svg
             className="text-gray-400 h-4 w-4 fill-current outline-none"
             viewBox="0 0 56.966 56.966"
