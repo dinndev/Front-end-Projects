@@ -10,12 +10,6 @@ function TrackPlaying({
   prevSong,
   currentIndex,
 }) {
-  const [currentPlaying, setCurrentPlaying] = useState({
-    preview,
-    artist,
-    images,
-    trackName,
-  });
   const [{ playing }, dispatch] = useSpotifyData();
   const audioRef = useRef();
   useEffect(() => {

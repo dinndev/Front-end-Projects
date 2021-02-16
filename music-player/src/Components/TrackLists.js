@@ -57,7 +57,7 @@ function TrackLists({
       <p className="col-span-2 text-gray-400">{_duration}</p>
       <svg
         onClick={() => setHeartBg((prev) => !prev)}
-        className={`${
+        className={`transition-all ${
           heartBg ? "text-red-500" : "text-gray-300"
         } fill-current text-xs text-gray-300 h-5 w-5 cursor-pointer`}
         viewBox="0 0 511.868 511.868"

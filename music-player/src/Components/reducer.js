@@ -1,12 +1,12 @@
 export const initialState = {
   user: null,
   playLists: {},
-  trackPlaying: [],
+  trackPlaying: {},
   playing: false,
   token: "",
   imageUrl: "",
   trackLists: [],
-  input: "ariana",
+  input: "bazzi",
 };
 
 const reducer = (state, action) => {

@@ -39,3 +39,21 @@ export const trackFilter = (track) => {
 export const fixInput = (input) => {
   return input.replace(/\s/g, "X");
 };
+
+export const initial = {
+  y: 30,
+  opacity: 0,
+};
+export const animate = {
+  y: 0,
+  opacity: 1,
+};
+export const exit = {
+  y: 30,
+  opacity: 0,
+};
+export const transition = {
+  row: 0.6,
+  tracks: 0.7,
+  player: 0.7,
+};
