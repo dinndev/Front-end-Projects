@@ -13,6 +13,16 @@ function TrackLists({
   i,
 }) {
   const [{ trackPlaying }, dispatch] = useSpotifyData();
+  const handlePlay = (_) => {
+    dispatch({
+      type: "SET_TRACK_PLAYING",
+      trackPlaying: trackPlayingData,
+    });
+    dispatch({
+      type: "SET_PLAYING",
+      playing: true,
+    });
+  };
   const convertion = convert(duration);
   const _duration = `${convertion.minutes}:${convertion.seconds}`;
   const [heartBg, setHeartBg] = useState(false);
@@ -29,7 +39,7 @@ function TrackLists({
   ];
 
   return (
-    <div className="track text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
+    <div className="track hover:bg-gray-200 transition-all text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
       <span className="font-bold text-xs text-secondary">{length}</span>
       <img
         className="rounded-lg object-contain h-12 w-12"
@@ -39,20 +49,16 @@ function TrackLists({
       <svg
         viewBox="0 0 320.001 320.001"
         className="z-10 h-3 w-3 fill-current cursor-pointer text-gray-300 col-span-1"
-        onClick={() => {
-          dispatch({
-            type: "SET_TRACK_PLAYING",
-            trackPlaying: trackPlayingData,
-          });
-          dispatch({
-            type: "SET_PLAYING",
-            playing: true,
-          });
-        }}
+        onClick={handlePlay}
       >
         <path d="M295.84 146.049l-256-144a16.026 16.026 0 00-15.904.128A15.986 15.986 0 0016 16.001v288a15.986 15.986 0 007.936 13.824A16.144 16.144 0 0032 320.001c2.688 0 5.408-.672 7.84-2.048l256-144c5.024-2.848 8.16-8.16 8.16-13.952s-3.136-11.104-8.16-13.952z" />
       </svg>
-      <p className="z-0 col-span-2 font-bold text-secondary">{trackName}</p>
+      <p
+        onClick={handlePlay}
+        className="z-0 cursor-pointer col-span-2 font-bold text-secondary"
+      >
+        {trackName}
+      </p>
       <p className="col-span-2 text-gray-400 text-xs">{artist}</p>
       <p className="col-span-2 text-gray-400">{_duration}</p>
       <svg
