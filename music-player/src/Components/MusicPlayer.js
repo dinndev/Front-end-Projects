@@ -6,7 +6,14 @@ import "./CostumStyle/musicPlayer.css";
 import TrackLists from "./TrackLists";
 import TrackPlaying from "./TrackPlaying";
 import axios from "axios";
-import { albumFilter, trackFilter } from "./helperFuctions";
+import {
+  albumFilter,
+  trackFilter,
+  animate,
+  exit,
+  initial,
+  transition,
+} from "./helperFuctions";
 require("dotenv").config();
 function MusicPlayer() {
   const [loading, setLoading] = useState(true);
@@ -79,20 +86,33 @@ function MusicPlayer() {
     return (_) => cancel();
   }, [currentSong, input]);
   return (
-    <>
+    <AnimatePresence>
       {loading ? (
         <h2 className="font-bold h-10 text-md sm:text-lg text-left">
           Loading...
         </h2>
       ) : (
         <div className="billboard-rows h-auto select-none w-full overflow-x-visible lg:overflow-hidden">
-          <h2 className="font-bold h-10 text-md sm:text-lg text-left">
+          <motion.h2
+            transition={{ duration: transition.row }}
+            initial={initial}
+            animate={animate}
+            exit={exit}
+            className="font-bold h-10 text-md sm:text-lg text-left"
+          >
             Albums
-          </h2>
-          <ul className="items-center sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll w-full whitespace-nowrap h-2/6 rows">
+          </motion.h2>
+          <motion.ul
+            initial={initial}
+            transition={{ duration: transition.row }}
+            animate={animate}
+            exit={exit}
+            className="items-center sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll w-full whitespace-nowrap h-2/6 rows"
+          >
             {albumFilter(playLists).map(({ image, title, trackLists, id }) => {
               return (
                 <Rows
+                  transition={{ duration: transition.tracks }}
                   key={id}
                   image={image}
                   tracks={trackLists}
@@ -100,15 +120,33 @@ function MusicPlayer() {
                 />
               );
             })}
-          </ul>
-          <p className="font-bold h-7 lg:block hidden text-md sm:text-lg my-3 md:m-2 text-left">
+          </motion.ul>
+          <motion.p
+            transition={{ duration: transition.player }}
+            initial={initial}
+            animate={animate}
+            exit={exit}
+            className="font-bold h-7 lg:block hidden text-md sm:text-lg my-3 md:m-2 text-left"
+          >
             Tracks
-          </p>
+          </motion.p>
           <div className="flex-col lg:flex-row lg:h-full flex w-full h-1/2 md:h-3/4">
-            <p className="font-bold h-7 lg:hidden text-md sm:text-lg my-5 md:m-2 text-left">
+            <motion.p
+              transition={{ duration: transition.player }}
+              initial={initial}
+              animate={animate}
+              exit={exit}
+              className="font-bold h-7 lg:hidden text-md sm:text-lg my-5 md:m-2 text-left"
+            >
               Tracks
-            </p>
-            <div className="album-tracks mr-4 flex-col flex h-56 w-full lg:h-full sm:w-full lg:w-3/5 overflow-y-scroll">
+            </motion.p>
+            <motion.div
+              transition={{ duration: transition.player }}
+              initial={initial}
+              animate={animate}
+              exit={exit}
+              className="album-tracks mr-4 flex-col flex h-56 w-full lg:h-full sm:w-full lg:w-3/5 overflow-y-scroll"
+            >
               {trackFilter(trackLists).map(
                 ({ id, duration, title, artist, image, preview }, index) => {
                   return (
@@ -125,8 +163,14 @@ function MusicPlayer() {
                   );
                 }
               )}
-            </div>
-            <div className="player-board w-full lg:h-full sm:w-full lg:mt-0 md:mt-6 lg:w-2/5 flex flex-col bg-white rounded-b-xl md:rounded-xl md:h-1/2 h-full">
+            </motion.div>
+            <motion.div
+              initial={initial}
+              animate={animate}
+              exit={exit}
+              transition={{ duration: transition.player }}
+              className="player-board w-full lg:h-full sm:w-full lg:mt-0 md:mt-6 lg:w-2/5 flex flex-col bg-white rounded-b-xl md:rounded-xl md:h-1/2 h-full"
+            >
               {Array.from(trackPlaying).map(
                 (
                   { artist, id, trackName, duration, images, preview, i },
@@ -150,11 +194,11 @@ function MusicPlayer() {
                   );
                 }
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
       )}
-    </>
+    </AnimatePresence>
   );
 }
 export default MusicPlayer;
