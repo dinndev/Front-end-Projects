@@ -5,15 +5,16 @@ import { useSpotifyData } from "./SpotifyProvider";
 function SearchBar() {
   const { register, handleSubmit } = useForm();
   const [{ input }, dispatch] = useSpotifyData();
+  console.log(input);
   return (
     <div className=" relative text-xs h-10 w-4/6 md:w-5/12 2xl:w-4/12 2xl:h-14 items-center 2xl:text-lg">
       <form
-        onSubmit={handleSubmit((data, e) => {
+        onChange={handleSubmit((data, e) => {
           dispatch({
             type: "SET_INPUT",
             input: data.artist,
           });
-          e.target.reset();
+          // e.target.reset();
         })}
         className="h-full w-full "
       >
