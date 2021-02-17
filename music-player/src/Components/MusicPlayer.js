@@ -6,6 +6,7 @@ import "./CostumStyle/musicPlayer.css";
 import TrackLists from "./TrackLists";
 import TrackPlaying from "./TrackPlaying";
 import axios from "axios";
+
 import {
   albumFilter,
   trackFilter,
@@ -19,7 +20,7 @@ function MusicPlayer() {
   const [loading, setLoading] = useState(true);
   // Get the value of the input as a query params
   const [
-    { playLists, trackLists, trackPlaying, input },
+    { playLists, likedTracks, trackLists, trackPlaying, input },
     dispatch,
   ] = useSpotifyData();
   const [currentSong, setCurrentSong] = useState(0);
@@ -55,7 +56,7 @@ function MusicPlayer() {
         setLoading(false);
         const singleData = [
           {
-            images: data[currentSong].album.cover_medium,
+            images: data[currentSong].album.cover_big,
             preview: data[currentSong].preview,
             id: data[currentSong].id,
             trackName: data[currentSong].title,
@@ -63,7 +64,6 @@ function MusicPlayer() {
             artist: data[currentSong].artist.name,
           },
         ];
-        console.log(data);
         //Set the data to playlists
         dispatch({
           type: "SET_PLAYLIST",
@@ -107,7 +107,7 @@ function MusicPlayer() {
             transition={{ duration: transition.row }}
             animate={animate}
             exit={exit}
-            className="items-center sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll w-full whitespace-nowrap h-2/6 rows"
+            className="items-center z-0 sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll w-full whitespace-nowrap h-2/6 rows"
           >
             {albumFilter(playLists).map(({ image, title, trackLists, id }) => {
               return (
@@ -151,6 +151,7 @@ function MusicPlayer() {
                 ({ id, duration, title, artist, image, preview }, index) => {
                   return (
                     <TrackLists
+                      id={id}
                       key={id}
                       duration={duration}
                       trackName={title}
@@ -158,7 +159,7 @@ function MusicPlayer() {
                       length={index + 1}
                       images={image}
                       preview={preview}
-                      i={index}
+                      currentIndex={currentSong}
                     />
                   );
                 }

@@ -1,23 +1,17 @@
 import { artists, randomSearch } from "./helperFuctions";
 
 export const initialState = {
-  user: null,
   playLists: {},
   trackPlaying: {},
   playing: false,
-  token: "",
   imageUrl: "",
   trackLists: [],
   input: randomSearch(artists),
+  likedTracks: [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.user,
-      };
     case "SET_TOKEN":
       return {
         ...state,
@@ -52,6 +46,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         input: action.input,
+      };
+    case "SET_LIKED_TRACKS":
+      return {
+        ...state,
+        likedTracks: [...state.likedTracks, action.likedTracks],
       };
     default:
       return state;
