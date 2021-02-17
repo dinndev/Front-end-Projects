@@ -10,10 +10,10 @@ function TrackLists({
   id,
   length,
   preview,
-  i,
+  currentIndex,
 }) {
-  const [{ trackPlaying }, dispatch] = useSpotifyData();
-  const handlePlay = (_) => {
+  const [{ likedTracks }, dispatch] = useSpotifyData();
+  const handlePlay = () => {
     dispatch({
       type: "SET_TRACK_PLAYING",
       trackPlaying: trackPlayingData,
@@ -34,10 +34,23 @@ function TrackLists({
       trackName,
       duration: _duration,
       preview,
-      i,
     },
   ];
 
+  const handleLikedTracks = () => {
+    setHeartBg((prev) => !prev);
+    if (!heartBg) {
+      dispatch({
+        type: "SET_LIKED_TRACKS",
+        likedTracks: trackPlayingData,
+      });
+    } else {
+      dispatch({
+        type: "SET_LIKED_TRACKS",
+        likedTracks: [],
+      });
+    }
+  };
   return (
     <div className="track hover:bg-gray-200 transition-all text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
       <span className="font-bold text-xs text-secondary">{length}</span>
@@ -62,7 +75,7 @@ function TrackLists({
       <p className="col-span-2 text-gray-400 text-xs">{artist}</p>
       <p className="col-span-2 text-gray-400">{_duration}</p>
       <svg
-        onClick={() => setHeartBg((prev) => !prev)}
+        onClick={handleLikedTracks}
         className={`transition-all ${
           heartBg ? "text-red-500" : "text-gray-300"
         } fill-current text-xs text-gray-300 h-5 w-5 cursor-pointer`}

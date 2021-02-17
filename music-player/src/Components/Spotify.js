@@ -1,26 +1,52 @@
-export const authEndpoint = "https://accounts.spotify.com/authorize";
-require("dotenv").config();
-const CLIENT_ID = "d90419c92a394294aa09182c83bd03ab";
-const redirectUri = "http://localhost:3000/";
-const scopes = [
-  "user-read-currently-playing",
-  "user-read-recently-played",
-  "user-read-playback-state",
-  "user-top-read",
-  "user-modify-playback-state",
-  "user-library-read",
-];
+import { useSpotifyData } from "./SpotifyProvider";
+import axios from "axios";
+export const deezerApiCall = (currentSong, dispatch, input, cancel) => {
+  const options = {
+    method: "GET",
+    url: "https://deezerdevs-deezer.p.rapidapi.com/search",
+    params: { q: input, limit: 20 },
+    headers: {
+      "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+    },
+  };
 
-export const getTokenfromUrl = () => {
-  return window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce((init, item) => {
-      let parts = item.split("=");
-      init[parts[0]] = decodeURIComponent(parts[1]);
-      return init;
-    }, {});
+  return axios
+    .request(options)
+    .then(async (res) => {
+      const data = await res.data.data;
+      const singleData = [
+        {
+          images: data[currentSong].album.cover_big,
+          preview: data[currentSong].preview,
+          id: data[currentSong].id,
+          trackName: data[currentSong].title,
+          duration: data[currentSong].duration,
+          artist: data[currentSong].artist.name,
+        },
+      ];
+      //Set the data to playlists
+
+      dispatch({
+        type: "SET_PLAYLIST",
+        playLists: data.map(({ album }) => album),
+      });
+      dispatch({
+        type: "SET_TRACKS",
+        trackLists: data,
+      });
+      dispatch({
+        type: "SET_TRACK_PLAYING",
+        trackPlaying: singleData,
+      });
+      dispatch({
+        type: "SET_PLAYING",
+        playing: false,
+      });
+      dispatch({
+        type: "SET_LOADING",
+        isLoading: false,
+      });
+    })
+    .catch((err) => console.log(err));
 };
-export const loginUrl = `${authEndpoint}?client_id=${CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scopes.join(
-  "%20"
-)}&response_type=token&show_dialog=true`;

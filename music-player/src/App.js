@@ -1,6 +1,6 @@
 import "./App.css";
 import Nav from "./Components/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Components/Header";
 import MusicPlayer from "./Components/MusicPlayer";
 import React from "react";

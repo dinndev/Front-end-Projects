@@ -25,7 +25,7 @@ export const trackFilter = (track) => {
       map.set(item.id, true); // set any value to Map
       result.push({
         id: item.id,
-        image: item.artist.picture,
+        image: item.album.cover_medium,
         title: item.title,
         duration: item.duration,
         artist: item.artist,
