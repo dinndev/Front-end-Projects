@@ -12,19 +12,19 @@ function Header() {
   return (
     <div className="header w-full h-14 my-3 flex items-center justify-between">
       {toggle ? null : <SearchBar />}
-      <div className="nav-controls hidden lg:flex pl-4 md:pl-0 items-center  bg-red w-2/6 sm:w-1/6 md:w-1/3 justify-end">
+      <div className="nav-controls lg:flex pl-4 md:pl-0 items-center bg-red sm:w-1/6 md:w-auto justify-end">
         <button className="hidden text-xs lg:block items-center h-10 bg-red-400 px-4 text-white rounded-full">
           Upgrade Plan
         </button>
       </div>
       <div
-        className={` flex items-center ${
+        className={` lg:hidden flex items-center ${
           toggle ? "justify-between w-full" : "justify-end w-auto"
         }`}
       >
         <svg
           onClick={handleToggle}
-          className={`w-7 h-7 transition-transform transform ${
+          className={` w-7 h-7 transition-transform transform ${
             toggle ? "rotate-180" : ""
           }`}
           viewBox="0 0 48 48"
