@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  distincValFilter,
   initial,
   exit,
   animate,
@@ -14,15 +13,17 @@ import { Link } from "react-router-dom";
 function Artists() {
   const [{ trackLists }, dispatch] = useSpotifyData();
   const key = "name";
-  const arrayUniqueByKey = [
-    ...new Map(
-      trackFilter(trackLists).map((item) => [item.artist[key], item])
-    ).values(),
-  ];
+  const arrayUniqueByKey = useMemo(() => {
+    return [
+      ...new Map(
+        trackFilter(trackLists).map((item) => [item.artist[key], item])
+      ).values(),
+    ];
+  }, [trackLists]);
   return (
     <AnimatePresence>
       <motion.h1
-        className="font-lato my-8 text-secondary font-bold text-4xl"
+        className="font-lato my-2 mb-8 text-secondary font-bold text-4xl"
         key="AnimateH1"
         initial={initial}
         transition={{ duration: transition.row }}
@@ -31,7 +32,7 @@ function Artists() {
       >
         Artists
       </motion.h1>
-      {arrayUniqueByKey.length == 0 ? (
+      {arrayUniqueByKey.length === 0 ? (
         <motion.h2
           key="AnimteH2"
           initial={initial}
@@ -67,7 +68,7 @@ function Artists() {
                         input: name,
                       })
                     }
-                    className="md:h-44 lg:w-40 xl:w-36 row xl:h-42 lg:h-36 md:w-44 2xl:w-64 2xl:h-64 rounded-full row-start-1 w-48 h-48 cursor-pointer object-cover"
+                    className="h-32 lg:w-40 md:h-36 md:w-36 xl:w-36 row xl:h-36 lg:h-40 w-32 2xl:w-48 2xl:h-48 rounded-full row-start-1 cursor-pointer object-cover"
                     src={picture_medium}
                     alt={name}
                   />

@@ -73,6 +73,7 @@ export const artists = [
   "pentatonix",
   "olivia rodrigo",
   "joji",
+  "alec benjamin",
 ];
 
 export const randomSearch = (artist) => {

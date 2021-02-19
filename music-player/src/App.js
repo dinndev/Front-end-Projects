@@ -4,22 +4,22 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Components/Header";
 import MusicPlayer from "./Components/MusicPlayer";
 import React from "react";
-import LikedSongs from "./Components/ LikedSongs";
+import Artists from "./Components/Artists";
 import Albums from "./Components/Albums";
 
 function App() {
   return (
-    <div className="App flex h-full w-screen bg-gray-100">
+    <div className="App relative flex h-full w-screen bg-gray-100">
       <Router>
         <Nav />
-        <div className="main-contents items-start w-full flex flex-col lg:h-screen h-full mx-6">
+        <div className="main-contents items-center lg:items-start w-screen flex mx-4 flex-col lg:h-screen h-full">
+          <Header />
           <Switch>
             <Route exact path="/">
-              <Header />
               <MusicPlayer />
             </Route>
             <Route exact path="/liked">
-              <LikedSongs />
+              <Artists />
             </Route>
             <Route exact path="/albums">
               <Albums />

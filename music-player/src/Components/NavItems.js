@@ -13,7 +13,7 @@ export const lists = [
     ),
   },
   {
-    title: "Liked Song",
+    title: "Artists",
     url: "/liked",
     svg: (
       <svg

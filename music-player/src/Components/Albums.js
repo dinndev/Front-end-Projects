@@ -10,7 +10,7 @@ import {
   transition,
 } from "./helperFuctions";
 function Albums() {
-  const [{ playLists, isLoading }, dispatch] = useSpotifyData();
+  const [{ playLists }, dispatch] = useSpotifyData();
   return (
     <AnimatePresence>
       <motion.h1

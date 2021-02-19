@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSpotifyData } from "./SpotifyProvider";
 import Rows from "./Rows";
@@ -6,6 +6,7 @@ import "./CostumStyle/musicPlayer.css";
 import TrackLists from "./TrackLists";
 import TrackPlaying from "./TrackPlaying";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 import {
   albumFilter,
@@ -17,24 +18,29 @@ import {
 } from "./helperFuctions";
 require("dotenv").config();
 function MusicPlayer() {
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   // Get the value of the input as a query params
   const [
-    { playLists, likedTracks, trackLists, trackPlaying, input },
+    { playLists, trackLists, trackPlaying, input },
     dispatch,
   ] = useSpotifyData();
   const [currentSong, setCurrentSong] = useState(0);
   // Api call every changes on input
-  const handleNextSong = () =>
-    currentSong >= 15 ? setCurrentSong(0) : setCurrentSong(currentSong + 1);
+  const handleNextSong = useCallback(() => {
+    return currentSong >= 15
+      ? setCurrentSong(0)
+      : setCurrentSong(currentSong + 1);
+  }, [currentSong]);
 
-  const handlePrevSong = () => {
+  const handlePrevSong = useCallback(() => {
+    console.log("prev");
     if (currentSong === 0) {
       return;
     } else {
       return setCurrentSong(currentSong - 1);
     }
-  };
+  }, [currentSong]);
   useEffect(() => {
     let cancel;
     const options = {
@@ -46,7 +52,6 @@ function MusicPlayer() {
         "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
       },
     };
-
     axios
       .request(options, {
         cancenToken: new axios.CancelToken((c) => (cancel = c)),
@@ -74,17 +79,17 @@ function MusicPlayer() {
           trackLists: data,
         });
         dispatch({
-          type: "SET_TRACK_PLAYING",
-          trackPlaying: singleData,
-        });
-        dispatch({
           type: "SET_PLAYING",
           playing: false,
         });
+        dispatch({
+          type: "SET_TRACK_PLAYING",
+          trackPlaying: singleData,
+        });
       })
       .catch((err) => console.log(err));
-    return (_) => cancel();
-  }, [currentSong, input]);
+    return () => cancel();
+  }, [currentSong, input, dispatch]);
   return (
     <AnimatePresence>
       {loading ? (
@@ -107,7 +112,7 @@ function MusicPlayer() {
             transition={{ duration: transition.row }}
             animate={animate}
             exit={exit}
-            className="items-center z-0 sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll w-full whitespace-nowrap h-2/6 rows"
+            className="items-center z-0 sm:h-1/3 md:h-1/4 lg:h-1/4 2xl:w-full xl:h-1/3 2xl: flex sm:justify-start overflow-y-hidden overflow-x-scroll whitespace-nowrap h-2/6 rows"
           >
             {albumFilter(playLists).map(({ image, title, trackLists, id }) => {
               return (
@@ -148,7 +153,11 @@ function MusicPlayer() {
               className="album-tracks mr-4 flex-col flex h-56 w-full lg:h-full sm:w-full lg:w-3/5 overflow-y-scroll"
             >
               {trackFilter(trackLists).map(
-                ({ id, duration, title, artist, image, preview }, index) => {
+                (
+                  { id, duration, title, artist, image, preview },
+                  index,
+                  array
+                ) => {
                   return (
                     <TrackLists
                       id={id}
@@ -159,6 +168,7 @@ function MusicPlayer() {
                       length={index + 1}
                       images={image}
                       preview={preview}
+                      array={array}
                       currentIndex={currentSong}
                     />
                   );

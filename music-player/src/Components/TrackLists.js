@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { useSpotifyData } from "./SpotifyProvider";
 import convert from "convert-seconds";
 
@@ -11,9 +11,11 @@ function TrackLists({
   length,
   preview,
   currentIndex,
+  array,
 }) {
   const [{ likedTracks }, dispatch] = useSpotifyData();
-  const handlePlay = () => {
+  const test = useRef(1);
+  const handlePlay = (_) => {
     dispatch({
       type: "SET_TRACK_PLAYING",
       trackPlaying: trackPlayingData,
@@ -36,7 +38,6 @@ function TrackLists({
       preview,
     },
   ];
-
   const handleLikedTracks = () => {
     setHeartBg((prev) => !prev);
     if (!heartBg) {
@@ -47,12 +48,15 @@ function TrackLists({
     } else {
       dispatch({
         type: "SET_LIKED_TRACKS",
-        likedTracks: [],
+        likedTracks: likedTracks.splice(likedTracks.indexOf(), 1),
       });
     }
   };
   return (
-    <div className="track hover:bg-gray-200 transition-all text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full">
+    <div
+      ref={test}
+      className={`track hover:bg-gray-200 transition-all text-xs sm:text-sm grid grid-cols-10 h-18 p-1 sm:h-16 justify-items-center items-center bg-white rounded-lg my-1 w-full`}
+    >
       <span className="font-bold text-xs text-secondary">{length}</span>
       <img
         className="rounded-lg object-contain h-12 w-12"
