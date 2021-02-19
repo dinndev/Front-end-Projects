@@ -1,10 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSpotifyData } from "./SpotifyProvider";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SearchBar() {
   const { register, handleSubmit } = useForm();
   const [{ input }, dispatch] = useSpotifyData();
+  const history = useHistory();
   return (
     <div className=" relative text-xs h-10 w-4/6 md:w-5/12 2xl:w-4/12 2xl:h-14 items-center 2xl:text-lg">
       <form
@@ -20,7 +23,9 @@ function SearchBar() {
             type: "SET_INPUT",
             input: data.artist,
           });
-          // e.target.reset();
+          history.push("/");
+
+          e.target.reset();
         })}
         className="h-full w-full"
       >
